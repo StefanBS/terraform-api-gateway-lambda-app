@@ -1,13 +1,16 @@
 import json
 
+
 def handler(event, context):
-    print('test')
-    return {
+    print(f"Start execution with event: {json.loads(event)}")
+    greeter = "world"
+    if event["body"]:
+        body = json.loads(event["body"])
+        if body["greeter"] and body["greeter"] != "":
+            greeter = body["greeter"]
+    response = {
         "statusCode": 200,
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "body": json.dumps({
-            "hello": "world"
-        })
+        "headers": {"Content-Type": "application/json"},
+        "body": json.dumps({"message": f"hello {greeter}"}),
     }
+    return response

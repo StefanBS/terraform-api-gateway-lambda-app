@@ -1,0 +1,44 @@
+name: "push-code"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+env:
+  AWS_REGION: eu-west-1
+  LAMBDA_NAME: hello-world
+  GH_TOKEN: ${{ github.token }}
+  AWS_ROLE_TO_ASSUME: arn:aws:iam::${{ vars.PHOENIX_DEV_ACCOUNT_ID }}:role/katch-devops-bot
+permissions: read-all
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME }}
+          role-duration-seconds: 1200
+          role-session-name: gh-action-deploy
+
+      - name: zip code
+        run: |
+          zip -r ${{ env.LAMBDA_NAME }} src
+
+      - name: Push code to lambda
+        run: |
+          aws lambda update-function-code --function-name ${{ env.LAMBDA_NAME }} --zip-file fileb://${{ env.LAMBDA_NAME }}.zip
+ 

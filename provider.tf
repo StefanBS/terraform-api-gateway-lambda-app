@@ -8,4 +8,10 @@ terraform {
 }
 
 provider "aws" {
+  default_tags {
+    tags = {
+      owner   = "Stefan"
+      project = "Cytora coding test"
+    }
+  }
 }

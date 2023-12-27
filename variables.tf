@@ -18,7 +18,7 @@ variable "lambda_memory_size" {
 }
 
 variable "lambda_python_runtime" {
-  description = "Python runtime used in Lambdda"
+  description = "Python runtime used in Lambda"
   default     = "python3.12"
   type        = string
 }
@@ -26,12 +26,12 @@ variable "lambda_python_runtime" {
 # API Gateway
 variable "api_gateway_throttling_rate_limit" {
   description = "API gateway throttling rate lmit in requests per second"
-  default     = 3
+  default     = 50
   type        = number
 }
 
 variable "api_gateway_throttling_burst_limit" {
   description = "API gateway throttling burst limit in number of requests"
-  default     = 5
+  default     = 200
   type        = number
 }
