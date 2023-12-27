@@ -2,6 +2,7 @@ import json
 
 
 def handler(event, context):
+    print(f"Starting execution with event: {json.loads(event)}")
     greeter = "world"
     if event["body"]:
         body = json.loads(event["body"])
