@@ -40,3 +40,4 @@ $ curl -X POST <invoke_url> -H 'content-type: application/json' -d '{ "greeter":
 
 - Automate Terraform pull requests with a tool like [Atlantis](https://www.runatlantis.io/)
 - Setup a security scanner like [Trivy](https://github.com/aquasecurity/trivy) to run on pull requests
+- A blue/green or canary deployment strategy using Lambda aliases or another strategy
