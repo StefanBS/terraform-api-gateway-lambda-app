@@ -8,7 +8,8 @@ env:
   AWS_REGION: eu-west-1
   LAMBDA_NAME: hello-world
   GH_TOKEN: ${{ github.token }}
-  AWS_ROLE_TO_ASSUME: arn:aws:iam::${{ vars.PHOENIX_DEV_ACCOUNT_ID }}:role/katch-devops-bot
+  AWS_ROLE_TO_ASSUME: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github-actions
+
 permissions: read-all
 defaults:
   run:
