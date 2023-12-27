@@ -42,5 +42,4 @@ jobs:
 
       - name: Push code to lambda
         run: |
-          aws lambda update-function-code --function-name ${{ env.LAMBDA_NAME }} --zip-file fileb://${{ env.LAMBDA_NAME }}.zip
- 
+          aws lambda update-function-code --function-name ${{ env.LAMBDA_NAME }} --zip-file fileb://src/${{ env.LAMBDA_NAME }}.zip
