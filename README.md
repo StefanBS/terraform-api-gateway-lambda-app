@@ -16,6 +16,16 @@ Extra points: Add CI/CD to your deployment.
 
 This solution implements a simple HTTP API in API Gateway and a zip code deployed Lambda. We use GitHub actions for CI/CD.
 
+### How to test
+
+After deploying the terraform code:
+```console
+$ curl -X POST <invoke_url>
+{"message": "hello world"}
+$ curl -X POST <invoke_url> -H 'content-type: application/json' -d '{ "greeter": "Stefan" }'
+{"message": "hello Stefan"}
+```
+
 ### Requirements
 
 - For CI/CD integration to work you need to [setup OIDC integration](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) and create a role called `github-action` with the `Trust relationship` described in the link and enough permissions policies to deploy lambdas, API Gateways and CloudWatch log groups
