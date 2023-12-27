@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
 env:
   AWS_REGION: eu-west-1
   LAMBDA_NAME: hello-world
